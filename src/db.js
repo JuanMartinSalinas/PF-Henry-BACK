@@ -1,5 +1,5 @@
 require("dotenv").config();
-const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME } = process.env;
+const { DB_USER, DB_PASSWORD, DB_HOST, DB_NAME, DB_DEPLOY } = process.env;
 const { Sequelize, or } = require("sequelize");
 const books = require("./models/Book.js");
 const authors = require("./models/Author.js");
@@ -9,19 +9,19 @@ const orders = require("./models/Order.js");
 const reviews = require("./models/Review.js");
 const carts = require("./models/Cart.js");
 
-const database = new Sequelize(
-  `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
-  {
-    logging: false,
-    native: false,
-    force: false,
-  }
-);
-// const database = new Sequelize(`${DB_DEPLOY}`, {
-//   logging: false,
-//   native: false,
-//   force: false,
-// });
+// const database = new Sequelize(
+//   `postgres://${DB_USER}:${DB_PASSWORD}@${DB_HOST}/${DB_NAME}`,
+//   {
+//     logging: false,
+//     native: false,
+//     force: false,
+//   }
+// );
+const database = new Sequelize(`${DB_DEPLOY}`, {
+  logging: false,
+  native: false,
+  force: false,
+});
 
 books(database);
 authors(database);
