@@ -17,7 +17,7 @@ const carts = require("./models/Cart.js");
 //     force: false,
 //   }
 // );
-const database = new Sequelize(DB_DEPLOY, {
+const database = new Sequelize(`${DB_DEPLOY}`, {
   logging: false,
   native: false,
   force: false,
